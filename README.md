@@ -10,3 +10,7 @@
 Tests are done with phpspec
 
 `./vendor/bin/phpspec run`
+
+## Misc
+
+Temperatures are in fahrenheit. 

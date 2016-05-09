@@ -22,5 +22,9 @@ $sensors->randomize();
 // Use Smarty for extra credit
 $smarty = new Security\Smarty\SmartyWrapper();
 
+// Bonus Dual Temperature Sensor
+$dual = new Security\Sensor\DualTemperatureSensor('Wine Cellar');
+$dual->detectRandom();
+
 // Display our sensor output
-$smarty->render('index', compact('sensors'));
+$smarty->render('index', compact('sensors', 'dual'));
