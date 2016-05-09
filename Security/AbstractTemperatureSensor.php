@@ -1,10 +1,9 @@
 <?php
-
 namespace Security;
 
 use InvalidArgumentException;
 
-class TemperatureSensor extends AbstractSensor implements Sensor
+abstract class AbstractTemperatureSensor extends AbstractSensor implements Sensor
 {
     /**
      * @var float
@@ -17,20 +16,13 @@ class TemperatureSensor extends AbstractSensor implements Sensor
     protected $type;
 
     /**
-     * @var array
-     */
-    private $types = ['Fire', 'Freeze'];
-
-    /**
-     * TemperatureSensor constructor.
+     * AbstractTemperatureSensor constructor.
      * @param string $name
-     * @param $type
      */
-    public function __construct($name, $type)
+    public function __construct($name)
     {
         parent::__construct($name);
 
-        $this->setType($type);
         $this->temp = 0;
     }
 
@@ -65,12 +57,8 @@ class TemperatureSensor extends AbstractSensor implements Sensor
     /**
      * @param $type
      */
-    public function setType($type)
+    protected function setType($type) 
     {
-        if ( ! in_array($type, $this->types)) {
-            throw new InvalidArgumentException('Can only be a Fire or a Freeze temp sensor.');
-        }
-        
         $this->type = $type;
     }
 
@@ -85,16 +73,5 @@ class TemperatureSensor extends AbstractSensor implements Sensor
     /**
      * @return bool
      */
-    public function alarm()
-    {
-        if ($this->type === 'Fire' && $this->temp >= 120) {
-            return true;
-        }
-        
-        if ($this->type === 'Freeze' && $this->temp <= 32) {
-            return true;
-        }
-        
-        return false;
-    }
+    abstract public function alarm();
 }
