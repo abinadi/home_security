@@ -1,14 +1,14 @@
 <?php
 
-namespace Security;
+namespace Security\Sensor;
 
-class FreezeTemperatureSensor extends AbstractTemperatureSensor
+class FireTemperatureSensor extends AbstractTemperatureSensor 
 {
     public function __construct($name)
     {
         parent::__construct($name);
-
-        $this->setType('Freeze');
+        
+        $this->setType('Fire');
     }
 
     /**
@@ -16,10 +16,10 @@ class FreezeTemperatureSensor extends AbstractTemperatureSensor
      */
     public function alarm()
     {
-        if ($this->temp <= 32) {
+        if ($this->temp >= 120) {
             return true;
         }
-
+        
         return false;
     }
 }

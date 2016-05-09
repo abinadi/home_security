@@ -1,17 +1,17 @@
 <?php
 
-namespace spec\Security;
+namespace spec\Security\Sensor;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Security\AbstractTemperatureSensor;
-use Security\FreezeTemperatureSensor;
-use Security\Sensor;
+use Security\Sensor\AbstractTemperatureSensor;
+use Security\Sensor\FreezeTemperatureSensor;
+use Security\Sensor\Sensor;
 
 /**
  * Class FreezeTemperatureSensorSpec
  * @package spec\Security
- * @mixin \Security\FreezeTemperatureSensor
+ * @mixin FreezeTemperatureSensor
  */
 class FreezeTemperatureSensorSpec extends ObjectBehavior
 {
@@ -34,10 +34,10 @@ class FreezeTemperatureSensorSpec extends ObjectBehavior
 
     public function it_knows_when_to_signal_alarm()
     {
-        $this->setTemperature(32);
+        $this->detect(32);
         $this->alarm()->shouldReturn(true);
 
-        $this->setTemperature(33);
+        $this->detect(33);
         $this->alarm()->shouldReturn(false);
     }
 }

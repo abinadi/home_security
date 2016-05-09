@@ -1,18 +1,12 @@
 <?php
-
-namespace Security;
+namespace Security\Sensor;
 
 class GlassBreakSensor extends AbstractSensor implements Sensor
 {
     /**
-     * @var string
-     */
-    protected $type = 'GlassBreak';
-
-    /**
      * @var float
      */
-    protected $state;
+    protected $level;
 
     /**
      * GlassBreakSensor constructor.
@@ -22,7 +16,8 @@ class GlassBreakSensor extends AbstractSensor implements Sensor
     {
         parent::__construct($name);
 
-        $this->listen(0.0);
+        $this->detect(0.0);
+        $this->setType('GlassBreak');
     }
 
     /**
@@ -30,27 +25,19 @@ class GlassBreakSensor extends AbstractSensor implements Sensor
      */
     public function getState()
     {
-        return $this->state . 'hz';
+        return $this->level . 'hz';
     }
 
     /**
-     * @param mixed $state
+     * @param mixed $level
      */
-    public function listen($state)
+    public function detect($level)
     {
-        if ( ! (is_int($state) || is_float($state))) {
+        if ( ! (is_int($level) || is_float($level))) {
             throw new \InvalidArgumentException();
         }
         
-        $this->state = $state;
-    }
-
-    /**
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
+        $this->level = $level;
     }
 
     /**
@@ -58,7 +45,7 @@ class GlassBreakSensor extends AbstractSensor implements Sensor
      */
     public function alarm()
     {
-        if ($this->state >= 450) {
+        if ($this->level >= 556) {
             return true;
         }
         

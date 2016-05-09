@@ -1,9 +1,17 @@
 <?php
-namespace Security;
+namespace Security\Sensor;
 
 class AbstractSensor
 {
+    /**
+     * @var string
+     */
     protected $name;
+
+    /**
+     * @var string
+     */
+    protected $type;
 
     /**
      * AbstractSensor constructor.
@@ -28,6 +36,22 @@ class AbstractSensor
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param $type
+     */
+    protected function setType($type)
+    {
+        $this->type = $type;
     }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Security;
+namespace Security\Sensor;
 
 class AbstractTemperatureSensorStub extends AbstractTemperatureSensor
 {

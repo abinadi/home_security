@@ -1,5 +1,5 @@
 <?php
-namespace Security;
+namespace Security\Sensor;
 
 use InvalidArgumentException;
 
@@ -11,11 +11,6 @@ abstract class AbstractTemperatureSensor extends AbstractSensor implements Senso
     protected $temp;
 
     /**
-     * @var string
-     */
-    protected $type;
-
-    /**
      * AbstractTemperatureSensor constructor.
      * @param string $name
      */
@@ -23,7 +18,7 @@ abstract class AbstractTemperatureSensor extends AbstractSensor implements Senso
     {
         parent::__construct($name);
 
-        $this->temp = 0;
+        $this->detect(0);
     }
 
     /**
@@ -31,43 +26,19 @@ abstract class AbstractTemperatureSensor extends AbstractSensor implements Senso
      */
     public function getState()
     {
-        return $this->getTemperature();
-    }
-
-    /**
-     * @return string
-     */
-    public function getTemperature()
-    {
         return $this->temp . ' Degrees';
     }
 
     /**
      * @param float $temp
      */
-    public function setTemperature($temp)
+    public function detect($temp)
     {
         if ( ! (is_int($temp) || is_float($temp))) {
             throw new InvalidArgumentException('Temp must be a number.');
         }
         
         $this->temp = $temp;
-    }
-
-    /**
-     * @param $type
-     */
-    protected function setType($type) 
-    {
-        $this->type = $type;
-    }
-
-    /**
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
     }
 
     /**

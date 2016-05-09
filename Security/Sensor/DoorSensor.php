@@ -1,22 +1,17 @@
 <?php
-namespace Security;
+namespace Security\Sensor;
 
 class DoorSensor extends AbstractSensor implements Sensor
 {
     /**
      * @var string
      */
-    protected $type = 'Door';
-
-    /**
-     * @var string
-     */
-    protected $state;
+    protected $position;
 
     /**
      * @var array
      */
-    protected $allowedStates = ['Open', 'Closed'];
+    protected $allowedPositions = ['Open', 'Closed'];
 
     /**
      * DoorSensor constructor.
@@ -26,19 +21,20 @@ class DoorSensor extends AbstractSensor implements Sensor
     {
         parent::__construct($name);
         
-        $this->setState('Closed');
+        $this->detect('Closed');
+        $this->setType('Door');
     }
 
     /**
-     * @param $state
+     * @param $position
      */
-    public function setState($state)
+    public function detect($position)
     {
-        if ( ! in_array($state, $this->allowedStates)) {
+        if ( ! in_array($position, $this->allowedPositions)) {
             throw new \InvalidArgumentException('A door may only be Open or Closed');
         }
         
-        $this->state = $state;
+        $this->position = $position;
     }
 
     /**
@@ -46,15 +42,7 @@ class DoorSensor extends AbstractSensor implements Sensor
      */
     public function getState()
     {
-        return $this->state;
-    }
-
-    /**
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
+        return $this->position;
     }
 
     /**

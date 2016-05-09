@@ -1,12 +1,11 @@
 <?php
 
-namespace spec\Security;
+namespace spec\Security\Sensor;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Security\AbstractSensor;
-use Security\AbstractTemperatureSensorStub;
-use Security\Sensor;
+use Security\Sensor\AbstractSensor;
+use Security\Sensor\AbstractTemperatureSensorStub;
 use stdClass;
 
 /**
@@ -34,21 +33,20 @@ class AbstractTemperatureSensorStubSpec extends ObjectBehavior
 
     public function it_can_detect_temperature()
     {
-        $this->setTemperature(70.6);
+        $this->detect(70.6);
         $this->getState()->shouldReturn('70.6 Degrees');
-        $this->getTemperature()->shouldReturn('70.6 Degrees');
     }
 
     public function it_only_handles_actual_temperatures()
     {
         $this->shouldThrow('\InvalidArgumentException')
-            ->duringSetTemperature('100');
+            ->duringDetect('100');
         
         $this->shouldThrow('\InvalidArgumentException')
-            ->duringSetTemperature(new stdClass());
+            ->duringDetect(new stdClass());
 
         $this->shouldThrow('\InvalidArgumentException')
-            ->duringSetTemperature(null);
+            ->duringDetect(null);
     }
 
 }

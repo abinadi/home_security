@@ -1,5 +1,5 @@
 <?php
-namespace Security;
+namespace Security\Sensor;
 
 interface Sensor
 {
@@ -9,14 +9,19 @@ interface Sensor
     public function getName();
 
     /**
+     * @return string
+     */
+    public function getType();
+
+    /**
      * @return mixed
      */
     public function getState();
 
     /**
-     * @return string
+     * @param $input
      */
-    public function getType();
+    public function detect($input);
 
     /**
      * @return bool

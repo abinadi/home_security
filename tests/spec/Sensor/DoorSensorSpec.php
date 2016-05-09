@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\Security;
+namespace spec\Security\Sensor;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Security\AbstractSensor;
-use Security\DoorSensor;
-use Security\Sensor;
+use Security\Sensor\AbstractSensor;
+use Security\Sensor\DoorSensor;
+use Security\Sensor\Sensor;
 
 /**
  * Class DoorSensorSpec
@@ -35,25 +35,25 @@ class DoorSensorSpec extends ObjectBehavior
     public function it_can_sense_state_of_the_door()
     {
         $this->getState()->shouldReturn('Closed');
-        $this->setState('Open');
+        $this->detect('Open');
         $this->getState()->shouldReturn('Open');
     }
     
     public function it_only_handles_actual_door_states()
     {
         $this->shouldThrow('\InvalidArgumentException')
-            ->duringSetState('Ajar');
+            ->duringDetect('Ajar');
 
         $this->shouldThrow('\InvalidArgumentException')
-            ->duringSetState(123);
+            ->duringDetect(123);
     }
 
     public function it_signals_alarm_if_door_is_open()
     {
-        $this->setState('Open');
+        $this->detect('Open');
         $this->alarm()->shouldReturn(true);
         
-        $this->setState('Closed');
+        $this->detect('Closed');
         $this->alarm()->shouldReturn(false);
     }
 }
