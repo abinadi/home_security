@@ -1,0 +1,6 @@
+suites:
+  main:
+    namespace: Security
+    psr4_prefix: Security
+    src_path: Security
+    spec_path: tests
