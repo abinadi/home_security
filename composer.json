@@ -1,0 +1,12 @@
+{
+    "name": "abinadi/home_security",
+    "description": "Custom security system for my house.",
+    "minimum-stability": "dev",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Abinadi Ayerdis",
+            "email": "abinadi.ayerdis@gmail.com"
+        }
+    ]
+}
