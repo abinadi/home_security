@@ -8,5 +8,16 @@
             "name": "Abinadi Ayerdis",
             "email": "abinadi.ayerdis@gmail.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "Security\\": "Security/"
+        }
+    },
+    "require": {
+        "smarty/smarty": "~3.1"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "~2.0"
+    }
 }
