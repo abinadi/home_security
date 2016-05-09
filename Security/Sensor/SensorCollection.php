@@ -3,7 +3,6 @@
 namespace Security\Sensor;
 
 use Countable;
-use Faker;
 use InvalidArgumentException;
 use Iterator;
 
@@ -40,32 +39,13 @@ class SensorCollection implements Iterator, Countable
     }
 
     /**
-     * Even better would be to have each sensor have a randomize method
+     * Call the detectRandom method on all the sensors in the collection.
      */
     public function randomize()
     {
-        $faker = Faker\Factory::create();
-        
         foreach($this->collection as $index => $sensor) {
-            if ($sensor instanceof FireTemperatureSensor) {
-                $this->collection[$index]->detect($faker->numberBetween(70,180));
-            }
-
-            if ($sensor instanceof FreezeTemperatureSensor) {
-                $this->collection[$index]->detect($faker->numberBetween(-10,100)); 
-            }
-            
-            if ($sensor instanceof DoorSensor) {
-                $this->collection[$index]->detect($faker->randomElement(['Open', 'Closed']));
-            }
-            
-            if ($sensor instanceof GlassBreakSensor) {
-                $this->collection[$index]->detect($faker->numberBetween(0,1000));
-            }
-            
-            if ($sensor instanceof SmokeDetectorSensor) {
-                $this->collection[$index]->detect($faker->numberBetween(0,100));
-            }
+            /** @var Sensor $sensor */
+            $sensor->detectRandom();
         }
     }
 

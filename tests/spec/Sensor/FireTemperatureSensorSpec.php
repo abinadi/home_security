@@ -40,4 +40,9 @@ class FireTemperatureSensorSpec extends ObjectBehavior
         $this->detect(119);
         $this->alarm()->shouldReturn(false);
     }
+
+    public function it_can_detect_random_for_demo()
+    {
+        $this->detectRandom();
+    }
 }

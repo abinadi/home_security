@@ -52,10 +52,15 @@ class GlassBreakSensorSpec extends ObjectBehavior
     
     public function it_signals_alarm_when_glass_breaking_sound()
     {
-        $this->detect(450);
+        $this->detect(557);
         $this->alarm()->shouldReturn(true);
         
         $this->detect(449);
         $this->alarm()->shouldReturn(false);
+    }
+
+    public function it_can_detect_random_for_the_demo()
+    {
+        $this->detectRandom();
     }
 }

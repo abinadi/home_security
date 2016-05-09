@@ -56,4 +56,9 @@ class DoorSensorSpec extends ObjectBehavior
         $this->detect('Closed');
         $this->alarm()->shouldReturn(false);
     }
+
+    public function it_can_detect_random_input_for_demo()
+    {
+        $this->detectRandom();
+    }
 }

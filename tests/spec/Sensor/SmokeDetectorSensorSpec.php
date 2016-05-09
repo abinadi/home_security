@@ -62,4 +62,9 @@ class SmokeDetectorSensorSpec extends ObjectBehavior
         $this->detect(74);
         $this->alarm()->shouldReturn(true);
     }
+
+    public function it_can_detect_random_for_the_demo()
+    {
+        $this->detectRandom();
+    }
 }

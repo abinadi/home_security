@@ -2,9 +2,6 @@
 
 require_once '../vendor/autoload.php';
 
-// Use Smarty for extra credit
-$smarty = new Security\Smarty\SmartyWrapper();
-
 // Create a new sensor collection and add 10 sensors to it
 $sensors = new \Security\Sensor\SensorCollection();
 
@@ -22,5 +19,8 @@ $sensors->add(new \Security\Sensor\SmokeDetectorSensor('Hallway'));
 // Randomize the sensors (for demonstration purposes)
 $sensors->randomize();
 
+// Use Smarty for extra credit
+$smarty = new Security\Smarty\SmartyWrapper();
 
+// Display our sensor output
 $smarty->render('index', compact('sensors'));

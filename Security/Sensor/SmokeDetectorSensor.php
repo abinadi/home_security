@@ -1,6 +1,8 @@
 <?php
 namespace Security\Sensor;
 
+use Faker;
+
 class SmokeDetectorSensor extends AbstractSensor implements Sensor
 {
     /**
@@ -43,6 +45,13 @@ class SmokeDetectorSensor extends AbstractSensor implements Sensor
         }
         
         $this->visibility = $visibility;
+    }
+
+    public function detectRandom()
+    {
+        $faker = Faker\Factory::create();
+        
+        $this->detect($faker->numberBetween(0,100));
     }
 
     /**

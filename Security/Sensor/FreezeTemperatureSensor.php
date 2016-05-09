@@ -1,6 +1,7 @@
 <?php
-
 namespace Security\Sensor;
+
+use Faker;
 
 class FreezeTemperatureSensor extends AbstractTemperatureSensor
 {
@@ -10,6 +11,13 @@ class FreezeTemperatureSensor extends AbstractTemperatureSensor
 
         $this->setType('Freeze');
         $this->detect(50); // Don't default to an alarm temperature
+    }
+
+    public function detectRandom()
+    {
+        $faker = Faker\Factory::create();
+        
+        $this->detect($faker->numberBetween(-10,100)); 
     }
 
     /**

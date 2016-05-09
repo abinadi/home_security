@@ -1,4 +1,3 @@
 .idea
 /vendor
-/node_modules
-/bower_components
+/smarty/templates_c

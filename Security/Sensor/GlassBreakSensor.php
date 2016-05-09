@@ -1,6 +1,8 @@
 <?php
 namespace Security\Sensor;
 
+use Faker;
+
 class GlassBreakSensor extends AbstractSensor implements Sensor
 {
     /**
@@ -38,6 +40,13 @@ class GlassBreakSensor extends AbstractSensor implements Sensor
         }
         
         $this->level = $level;
+    }
+
+    public function detectRandom()
+    {
+        $faker = Faker\Factory::create();
+        
+        $this->detect($faker->numberBetween(0,1000));
     }
 
     /**

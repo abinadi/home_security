@@ -24,6 +24,11 @@ interface Sensor
     public function detect($input);
 
     /**
+     * @return void
+     */
+    public function detectRandom();
+
+    /**
      * @return bool
      */
     public function alarm();

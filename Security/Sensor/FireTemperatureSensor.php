@@ -1,6 +1,7 @@
 <?php
-
 namespace Security\Sensor;
+
+use Faker;
 
 class FireTemperatureSensor extends AbstractTemperatureSensor 
 {
@@ -9,6 +10,13 @@ class FireTemperatureSensor extends AbstractTemperatureSensor
         parent::__construct($name);
         
         $this->setType('Fire');
+    }
+
+    public function detectRandom()
+    {
+        $faker = Faker\Factory::create();
+        
+        $this->detect($faker->numberBetween(70,180));
     }
 
     /**

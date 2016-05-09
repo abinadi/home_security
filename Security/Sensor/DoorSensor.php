@@ -1,6 +1,8 @@
 <?php
 namespace Security\Sensor;
 
+use Faker;
+
 class DoorSensor extends AbstractSensor implements Sensor
 {
     /**
@@ -35,6 +37,12 @@ class DoorSensor extends AbstractSensor implements Sensor
         }
         
         $this->position = $position;
+    }
+
+    public function detectRandom()
+    {
+        $faker = Faker\Factory::create();
+        $this->detect($faker->randomElement(['Open', 'Closed']));
     }
 
     /**
