@@ -4,6 +4,7 @@ namespace spec\Security;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use stdClass;
 
 /**
  * Class TemperatureSensorSpec
@@ -49,6 +50,18 @@ class TemperatureSensorSpec extends ObjectBehavior
         $this->setTemperature(70.6);
         $this->getState()->shouldReturn('70.6 Degrees');
         $this->getTemperature()->shouldReturn('70.6 Degrees');
+    }
+
+    public function it_only_handles_actual_temperatures()
+    {
+        $this->shouldThrow('\InvalidArgumentException')
+            ->duringSetTemperature('100');
+        
+        $this->shouldThrow('\InvalidArgumentException')
+            ->duringSetTemperature(new stdClass());
+
+        $this->shouldThrow('\InvalidArgumentException')
+            ->duringSetTemperature(null);
     }
 
     public function it_knows_when_to_signal_an_alarm()

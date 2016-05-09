@@ -55,6 +55,10 @@ class TemperatureSensor extends AbstractSensor implements Sensor
      */
     public function setTemperature($temp)
     {
+        if ( ! (is_int($temp) || is_float($temp))) {
+            throw new InvalidArgumentException('Temp must be a number.');
+        }
+        
         $this->temp = $temp;
     }
 
